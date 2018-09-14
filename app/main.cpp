@@ -1,23 +1,13 @@
-#include <iostream>
-#include <stdlib.h>
+#include "qtexample.h"
+#include <QApplication>
+#include "Config.h"
 
-#include "exampleConfig.h"
-#include "example.h"
+int main(int argc, char *argv[])
+{
+    QApplication app(argc, argv);
+    QTExample w;
+    w.show();
 
-/*
- * Simple main program that demontrates how access
- * CMake definitions (here the version number) from source code.
- */
-int main() {
-  std::cout << "C++ Boiler Plate v"
-            << PROJECT_VERSION_MAJOR
-            << "."
-            << PROJECT_VERSION_MINOR
-            << std::endl;
-  std::system("cat ../LICENCE");
-
-  // Bring in the dummy class from the example source,
-  // just to show that it is accessible from main.cpp.
-  Dummy d = Dummy();
-  return d.doSomething() ? 0 : -1;
+    return app.exec();
 }
+

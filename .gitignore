@@ -34,3 +34,11 @@
 
 # Build directory
 build/
+
+# Kdevelop shits
+*.kdev4
+.kdev4/
+.directory
+
+# Dunno
+*.qm
