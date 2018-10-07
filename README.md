@@ -65,7 +65,7 @@ The [.gitignore](.gitignore) file is a copy of the [Github C++.gitignore file](h
 with the addition of ignoring the build directory (`build/`).
 
 ## IMPORTANT!!!
-Be sure to Add MinGW installation dir to Path
+Be sure that MinGW installation directory in on PATH
 (Guide [Info](https://www.computerhope.com/issues/ch000549.htm))
  
 
