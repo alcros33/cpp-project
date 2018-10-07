@@ -7,6 +7,9 @@
 - Use of [CMake](https://cmake.org/) for much easier compiling
 - Example configuration of QT5:Widgets
 
+## Why?
+I wanted to easily port my source codes from linux and compile them on windows without having to configure that tedious visual studio thing.
+
 ## Depndencies
 
 * MinGW (x64, posix, seh) # [Download Link!](https://sourceforge.net/projects/mingw-w64/files/latest/download)
