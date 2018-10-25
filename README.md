@@ -14,7 +14,7 @@ I wanted to easily port my source codes from linux and compile them on windows w
 
 * MinGW (x64, posix, seh) # [Download Link!](https://sourceforge.net/projects/mingw-w64/files/latest/download)
 * CMake # [Download Link!](https://cmake.org/download/)
-* QT5 (Select MinGW 7.30 from alpha snapshot)# [Download Link!](https://www.qt.io/download)
+* QT5 (Select MinGW 7.30)# [Download Link!](https://www.qt.io/download)
 * Google Test # Included!
 
 ## Structure
