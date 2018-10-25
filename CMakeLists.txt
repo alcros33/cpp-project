@@ -7,7 +7,7 @@ set(MAIN_LIBRARY_NAME "engine")
 enable_language(C CXX)
 
 if (NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "Release")
+    set(CMAKE_BUILD_TYPE "Debug")
 endif()
 
 # --------------------------------------------------------------------------------
@@ -59,6 +59,7 @@ set(CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
+
 # Things to always include as flags. Change as needed.
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wpedantic -Wextra -Wno-sign-compare -Wno-unused-parameter")  
 
@@ -67,8 +68,6 @@ SET(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG -Wl,-subsystem,windows")
 SET(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
 
 message(STATUS "Building with the following extra flags: ${CMAKE_CXX_FLAGS}")
-
-
 # --------------------------------------------------------------------------------
 #                         Locate files (no change needed).
 # --------------------------------------------------------------------------------

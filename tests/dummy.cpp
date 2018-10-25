@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "example.h"
+#include "example.hpp"
 
 TEST(Dummy, example) {
   Dummy d = Dummy();
