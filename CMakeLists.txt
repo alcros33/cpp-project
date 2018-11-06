@@ -106,7 +106,7 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
     add_custom_command(
         TARGET Main
         POST_BUILD
-        COMMAND windeployqt --release $<TARGET_FILE:Main>)
+        COMMAND windeployqt --release $<TARGET_FILE:${MAIN_APP_NAME}>)
 endif()
 
 # --------------------------------------------------------------------------------
