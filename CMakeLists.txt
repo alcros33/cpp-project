@@ -170,7 +170,7 @@ if(DOXYGEN_FOUND AND NOT MINGW)
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
         COMMENT "${BoldMagenta}Generating API documentation with Doxygen (open ./html/index.html to view).${ColourReset}" VERBATIM
         )
-endif(DOXYGEN_FOUND)
+endif()
 
 # --------------------------------------------------------------------------------
 #                            Misc (no change needed).
