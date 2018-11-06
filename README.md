@@ -1,6 +1,6 @@
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bsamseth/cpp-project/blob/master/LICENCE)
 
-# Template for Windows C++ projects with QT5 Gui 
+# Template for C++ projects with QT5 Gui (For Windows and Linux) 
 
 - Sources, headers and mains separated in distinct folders
 - Access to [Google Tests](https://github.com/google/googletest)
@@ -12,10 +12,17 @@ I wanted to easily port my source codes from linux and compile them on windows w
 
 ## Depndencies
 
+### Linux
+* CMake
+* Qt5
+
+
+### Windows
+
 * CMake # [Download Link!](https://cmake.org/download/)
 * QT5 (Select MinGW 7.30)# [Download Link!](https://www.qt.io/download)
 * MinGW (x64, posix, seh) (MinGW is usually included with QT5) # [Download Link!](https://sourceforge.net/projects/mingw-w64/files/latest/download)
-* Google Test # Included!
+
 
 ## Structure
 ```
@@ -44,7 +51,16 @@ If the executable you made does not use the library in [src/](src), then only th
 
 Build by making a build directory (i.e. `build/`), run `cmake` in that dir, and then use `mingw32-make` to build the desired target.
 
-Example:
+### Linux
+
+``` bash
+$ mkdir build && cd build
+$ cmake .. -DCMAKE_BUILD_TYPE=[Debug | Release] 
+$ make
+$ make gtest     # Makes and runs the tests.(Only Available in debug mode )
+```
+
+### Windows
 
 ``` bash
 $ mkdir build && cd build
@@ -65,7 +81,7 @@ The [.gitignore](.gitignore) file is a copy of the [Github C++.gitignore file](h
 with the addition of ignoring the build directory (`build/`).
 
 ## IMPORTANT!!!
-Be sure that MinGW installation directory in on PATH
+For windows be sure that MinGW installation directory in on PATH
 (Guide [Info](https://www.computerhope.com/issues/ch000549.htm))
  
 

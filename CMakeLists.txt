@@ -104,7 +104,7 @@ target_link_libraries(${MAIN_APP_NAME} ${MAIN_LIBRARY_NAME} Qt5::Widgets)
 # Deploy QT on Windows
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
     add_custom_command(
-        TARGET Main
+        TARGET ${MAIN_APP_NAME}
         POST_BUILD
         COMMAND windeployqt --release $<TARGET_FILE:${MAIN_APP_NAME}>)
 endif()
@@ -147,6 +147,30 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     set_source_files_properties(${PROJECT_SOURCE_DIR}/external/googletest/src/gtest-all.cc  PROPERTIES GENERATED 1)
     set_source_files_properties(${PROJECT_SOURCE_DIR}/external/googletest/src/gtest_main.cc PROPERTIES GENERATED 1)
 endif()
+
+# --------------------------------------------------------------------------------
+#                         Code Coverage (no change needed).
+# --------------------------------------------------------------------------------
+# If CMake aborts due to missing dependencies for code coverage 
+# (gcov, lcov, genhtml and supported compiler), comment this line.
+if(NOT MINGW)
+    include(CodeCoverage)
+endif()
+
+# --------------------------------------------------------------------------------
+#                         Documentation (no change needed).
+# --------------------------------------------------------------------------------
+# Add a make target 'doc' to generate API documentation with Doxygen.
+# You should set options to your liking in the file 'Doxyfile.in'.
+find_package(Doxygen)
+if(DOXYGEN_FOUND AND NOT MINGW)
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
+    add_custom_target(doc 
+        ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile &> doxygen.log
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+        COMMENT "${BoldMagenta}Generating API documentation with Doxygen (open ./html/index.html to view).${ColourReset}" VERBATIM
+        )
+endif(DOXYGEN_FOUND)
 
 # --------------------------------------------------------------------------------
 #                            Misc (no change needed).
