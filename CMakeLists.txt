@@ -92,7 +92,7 @@ set(TEST_MAIN unit_tests)  # Default name for test executable (change if you wis
 # --------------------------------------------------------------------------------
 
 # Compile all sources into a library. Called engine here (change if you wish).
-add_library(engine SHARED ${SOURCES} )
+add_library(${MAIN_LIBRARY_NAME} SHARED ${SOURCES} )
 
 # Add an executable for the file main.cpp, here called main.x.
 # If you add more executables, copy these three lines accordingly.
