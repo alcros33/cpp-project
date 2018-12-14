@@ -19,6 +19,7 @@ endif()
 # See exampleConfig.h.in for some more details.
 set(PROJECT_VERSION_MAJOR 1)
 set(PROJECT_VERSION_MINOR 0)
+set(PROJECT_VERSION_PATCH 0)
 
 #Include stuff. No change needed.
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
@@ -62,10 +63,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
 # Things to always include as flags. Change as needed.
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wpedantic -Wextra -Wno-sign-compare -Wno-unused-parameter")  
-
 # Build-type specific flags. Change as needed.
-SET(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG -Wl,-subsystem,windows")
+SET(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
+if(MINGW)
+    SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wl,-subsystem,windows")
+endif()
+
 SET(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
+
 
 message(STATUS "Building with the following extra flags: ${CMAKE_CXX_FLAGS}")
 # --------------------------------------------------------------------------------
@@ -87,6 +92,14 @@ file(GLOB TESTFILES "tests/*.cpp")
 file(GLOB APPFILES "app/*.cpp")
 set(TEST_MAIN unit_tests)  # Default name for test executable (change if you wish).
 
+
+if(MINGW AND CMAKE_BUILD_TYPE STREQUAL "Release")
+    SET(WINDOWS_ICON_RESOURCE "${PROJECT_SOURCE_DIR}/resources/app_icon.rc")
+endif()
+
+# Resources Example
+# qt5_add_resources(QT5_RESOURCES "${PROJECT_SOURCE_DIR}/resources/Icons.qrc")
+
 # --------------------------------------------------------------------------------
 #                            Build! (Change as needed)
 # --------------------------------------------------------------------------------
@@ -97,16 +110,16 @@ add_library(${MAIN_LIBRARY_NAME} SHARED ${SOURCES} )
 # Add an executable for the file main.cpp, here called main.x.
 # If you add more executables, copy these three lines accordingly.
 
-add_executable(${MAIN_APP_NAME} ${APPFILES})   # Name of exec. and location of file.
+add_executable(${MAIN_APP_NAME} ${APPFILES} ${QT5_RESOURCES} ${WINDOWS_ICON_RESOURCE})
 add_dependencies(${MAIN_APP_NAME} ${MAIN_LIBRARY_NAME})     
 target_link_libraries(${MAIN_APP_NAME} ${MAIN_LIBRARY_NAME} Qt5::Widgets) 
 
 # Deploy QT on Windows
-if(CMAKE_BUILD_TYPE STREQUAL "Release")
+if(MINGW AND CMAKE_BUILD_TYPE STREQUAL "Release")
     add_custom_command(
         TARGET ${MAIN_APP_NAME}
         POST_BUILD
-        COMMAND windeployqt --release $<TARGET_FILE:${MAIN_APP_NAME}>)
+        COMMAND windeployqt --release $<TARGET_FILE:${MAIN_APP_NAME}> --no-translations --no-system-d3d-compiler )
 endif()
 
 # --------------------------------------------------------------------------------
