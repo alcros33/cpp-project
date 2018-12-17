@@ -1,4 +1,4 @@
-[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bsamseth/cpp-project/blob/master/LICENCE)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENCE)
 
 # Template for C++ projects with QT5 Gui (For Windows and Linux) 
 
